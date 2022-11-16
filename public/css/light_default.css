@@ -1,0 +1,33 @@
+:root {
+	--bg-color: lightyellow;
+}
+
+
+body {
+	background-color: var(--bg-color);
+}
+nav {
+	background-color: #ffff53;
+	border-bottom: 1px solid black;
+}
+#cookie-consent-banner {
+	background-color: var(--bg-color);
+	border-top: 1px solid black;
+}
+
+#btn-cookie-consent-reject-all {
+	background-color: unset;
+	border: 1px solid black;
+}
+#btn-cookie-consent-accept-all {
+	background-color: darkgoldenrod;
+	color: white;
+}
+
+#breadcrumbs {
+	border-bottom: 1px solid black;
+}
+
+.profile-display-table, .profile-display-table td {
+	border: 1px solid black;
+}

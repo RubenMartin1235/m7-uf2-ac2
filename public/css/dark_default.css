@@ -1,0 +1,54 @@
+:root {
+	--bg-color: rgb(35, 35, 0);
+	--border-color: white;
+}
+
+* {
+	color: white;
+}
+
+body {
+	background-color: var(--bg-color);
+}
+nav {
+	background-color: #6a6a00;
+	border-bottom: 1px solid var(--border-color);
+}
+
+#cookie-consent-banner {
+	background-color: var(--bg-color);
+	border-top: 1px solid var(--border-color);
+}
+
+#btn-cookie-consent-reject-all {
+	background-color: unset;
+	border: 1px solid var(--border-color);
+}
+#btn-cookie-consent-accept-all {
+	background-color: darkgoldenrod;
+	color: white;
+}
+
+#breadcrumbs {
+	border-bottom: 1px solid var(--border-color);
+}
+
+.profile-display-table, .profile-display-table td {
+	border: 1px solid var(--border-color);
+}
+#modify-user-settings-btn, .profile-display-table select {
+	background-color: darkgoldenrod;
+	border: 1px solid var(--border-color);
+}
+button {
+	background-color: darkgoldenrod;
+	border: 1px solid var(--border-color);
+}
+
+input {
+	color:black;
+}
+
+#dashboard-users-table, #dashboard-users-table td, #dashboard-users-table th {
+	border-color: white;
+}
