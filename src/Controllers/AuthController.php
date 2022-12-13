@@ -25,8 +25,25 @@ final class AuthController extends Controller {
 		} catch (\Exception $ex) {
 
 		}
-		
-
 		var_dump($users);
+	}
+
+	// Redirigeix al dashboard de l'usuari o a auth un altre cop.
+	private function auth(string $email, string $passwd) {
+		$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
+		
+		$result = $this->qb->
+			select(['email','passwd'])->
+			from('users')->
+			where(['email' => $email])->
+			and_cond()->
+			limit(1)->
+			exec()
+		;
+		if ($result) {
+			$this->redirect('/dashboard');
+		} else {
+			$this->redirect('/auth');
+		}
 	}
 }
