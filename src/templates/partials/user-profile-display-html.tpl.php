@@ -1,1 +1,0 @@
-<h2><a href="?url=userprofile"><?= $_SESSION['user']->fullname; ?></a></h2>

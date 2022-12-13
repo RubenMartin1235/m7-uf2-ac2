@@ -1,4 +1,4 @@
-# 
+# Allow following symbolic links
 Options +FollowSymLinks
 
 # Enable rewriting

@@ -29,3 +29,12 @@ Incorpora dades bàsiques de llibre:
 3. Lloguer
 4. Pròrroga
 5. Sancionar (automàtic)
+
+## Casos
+
+### Lloguer
+
+En un principi, els usuaris poden llogar llibres gratuïtament.
+
+#### Si hi ha retard...
+Per cada dia de retard s'afegirà 0,50€ al cost del lloguer.
