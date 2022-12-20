@@ -3,7 +3,7 @@ namespace App;
 
 use App\Container;
 use App\Controller;
-use App\Database\QueryBuilder;
+use App\Database\DB;
 use App\Request;
 use App\Session;
 
@@ -15,7 +15,7 @@ abstract class Controller {
 	function __construct(Request $request, Session $session) {
 		$this->request = $request;
 		$this->session = $session;
-		$this->qb = Container::get('query');
+		$this->qb = Container::get('database');
 	}
 
 	public function index() {
@@ -26,5 +26,9 @@ abstract class Controller {
 
 	public function redirect(string $url) {
 		header('Location:' . $url);
+	}
+	
+	public function error() {
+		echo "Error";
 	}
 }

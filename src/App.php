@@ -33,7 +33,7 @@ final class App{
 				call_user_func([$controllerObj, 'error']);
 			}
 		} catch (\Exception $ex) {
-			die($e->getMessage());
+			die($ex->getMessage());
 		}
 	}
 }

@@ -20,29 +20,30 @@ final class AuthController extends Controller {
 		$email = $this->request->post('email');
 		$passwd = $this->request->post('passwd');
 
-		try {
-			$users = Container::get('database')->selectAll('USERS');
-		} catch (\Exception $ex) {
-
-		}
+		$this->auth($email, $passwd);
 		var_dump($users);
 	}
 
 	// Redirigeix al dashboard de l'usuari o a auth un altre cop.
 	private function auth(string $email, string $passwd) {
-		$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
-		
-		$result = $this->qb->
+
+		$user = $this->qb->
 			select(['email','passwd'])->
-			from('users')->
-			where(['email' => $email])->
-			and_cond()->
+			from('USERS')->
+			where("email = '$email'")->
 			limit(1)->
-			exec()
+			exec()->
+			fetch()[0]
 		;
-		if ($result) {
+
+		//$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
+		$passVerified = password_verify($passwd, $user->passwd);
+
+		if ($user && $passVerified) {
+			$this->session->set('email',$email);
 			$this->redirect('/dashboard');
 		} else {
+			$this->session->set('error',"Session failed");
 			$this->redirect('/auth');
 		}
 	}

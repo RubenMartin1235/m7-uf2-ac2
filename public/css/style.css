@@ -15,12 +15,22 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 }
+body>main {
+	flex-grow: 1;
+}
 header {
 	background-color: var(--header-bg-color);
 	color: var(--header-title-color);
 
 	padding: 0.3rem 1.5rem;
 
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+}
+header>*{
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -59,12 +69,14 @@ nav #navbar-auth {
 }
 
 #auth-form {
-	margin-top: 12vh;
+	margin: auto;
 	padding: 2rem;
 	align-self: center;
 
 	width: 40%;
-	background-color: var(--header-bg-color);
+	border-radius: 1rem;
+	border: 1px solid var(--auth-form-border-color);
+	background-color: var(--auth-form-bg-color);
 	
 	display: flex;
 	flex-flow: column nowrap;
