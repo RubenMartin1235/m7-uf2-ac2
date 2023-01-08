@@ -19,7 +19,8 @@ abstract class Controller {
 	}
 
 	public function index() {
-		$users = Container::get('database')->selectAll('USERS');
+		$email = $this->request->post('email');
+		$passwd = $this->request->post('passwd');
 
 		return view('home', compact('USERS'));
 	}
@@ -30,5 +31,30 @@ abstract class Controller {
 	
 	public function error() {
 		echo "Error";
+	}
+
+	public function getUser(string|null $email, string|null $passwd) {
+		if (!(isset($email) && isset($passwd))) {
+			return false;
+		}
+		$user = $this->qb->
+			select(['username','email','passwd'])->
+			from('USERS')->
+			where("email = '$email'")->
+			limit(1)->
+			exec()->
+			fetch()[0]
+		?? false;
+
+		if ($user) {
+			$passVerified = password_verify($passwd, $user->passwd);
+			if ($passVerified) {
+				return $user;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }

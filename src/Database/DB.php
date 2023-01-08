@@ -14,9 +14,12 @@ class DB {
 		$this->pdo = $pdo;
 	}
 
-	function appendToQuery(string $s) {
+	function appendToQuery(string $s):self {
 		$this->query[] = $s;
 		return $this;
+	}
+	function clearQuery() {
+		$this->query = [];
 	}
 
 	function select(array $fields = ["*"]):self {
@@ -28,9 +31,10 @@ class DB {
 	}
 	function insert(string $table, array $entries):self {
 		$sql = "INSERT INTO $table VALUES ";
+		
 		$entries_count = count($entries);
 		for ($i=0; $i < $entries_count; $i++) {
-			$sql += "(";
+			$sql .= "(";
 			$entry = $entries[$i];
 			$fields_count = count($entry);
 			for ($j=0; $j < $fields_count; $j++) {
@@ -39,15 +43,17 @@ class DB {
 				if (is_string($fieldval_out)) {
 					$fieldval_out = "'$fieldval_out'";
 				}
+				$sql .= $fieldval_out;
 				if ($j < $fields_count - 1) {
-					$sql += ",";
+					$sql .= ",";
 				}
 			}
-			$sql += ")";
+			$sql .= ")";
 			if ($i < $entries_count - 1) {
-				$sql += ",";
+				$sql .= ",";
 			}
 		}
+		$this->appendToQuery($sql);
 		return $this;
 	}
 	function delete(array $data):self {
@@ -91,14 +97,30 @@ class DB {
 		return join($this->query);
 	}
 
+	function selectCount():self {
+		$sql = "SELECT COUNT(*) AS LEN ";
+
+		$this->appendToQuery($sql);
+		return $this;
+	}
+
+	function semicolon($queryArray=null):self {
+		$this->appendToQuery(";");
+		return $this;
+	}
+
 	function exec($queryArray=null):self {
+		$this->appendToQuery(";");
 		$sql = join($this->query);
+		var_dump($sql);
 
 		$this->stmt = $this->query($sql);
 		
 		$this->stmt->execute();
 		return $this;
 	}
+
+	
 
 	function fetch(){
 		$rows = $this->stmt->fetchAll(\PDO::FETCH_OBJ);

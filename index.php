@@ -13,5 +13,5 @@
 	use App\App;
 
 	// crida al controlador
-	new App();
+	$app = new App();
 ?>

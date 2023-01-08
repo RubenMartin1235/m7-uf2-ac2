@@ -4,6 +4,6 @@
 		<h3><?="${title}"?></h3>
 	</div>
 	<div id="header-right">
-		<h3><?="user"?></h3>
+		<h3><?=$username ?? ""?></h3>
 	</div>
 </header>

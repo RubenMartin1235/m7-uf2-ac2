@@ -13,6 +13,13 @@ final class AuthController extends Controller {
 	}
 
 	public function index() {
+		$email = $this->session->get('email');
+		$passwd = $this->session->get('passwd');
+		if (
+			isset($email) && isset($passwd)
+		) {
+			$this->redirect('/dashboard');
+		}
 		// renderitzar vista
 		return view('auth', ['title' => 'Log in']);
 	}
@@ -21,26 +28,16 @@ final class AuthController extends Controller {
 		$passwd = $this->request->post('passwd');
 
 		$this->auth($email, $passwd);
-		var_dump($users);
+		//var_dump($users);
 	}
 
 	// Redirigeix al dashboard de l'usuari o a auth un altre cop.
 	private function auth(string $email, string $passwd) {
+		$user = $this->getUser($email, $passwd);
 
-		$user = $this->qb->
-			select(['email','passwd'])->
-			from('USERS')->
-			where("email = '$email'")->
-			limit(1)->
-			exec()->
-			fetch()[0]
-		;
-
-		//$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
-		$passVerified = password_verify($passwd, $user->passwd);
-
-		if ($user && $passVerified) {
+		if ($user) {
 			$this->session->set('email',$email);
+			$this->session->set('passwd',$passwd);
 			$this->redirect('/dashboard');
 		} else {
 			$this->session->set('error',"Session failed");

@@ -5,7 +5,7 @@
 <body>
 	<?php	include APPVIEWS.'/templates/header.tpl.php'; ?>
 	<?php	include APPVIEWS.'/templates/navbar.tpl.php'; ?>
-	<form action="/auth/signup" method="post" id="auth-form">
+	<form action="/signup/signup" method="post" id="auth-form">
 		<div class="form-field">
 			<label for="username">Username:</label>
 			<input type="text" name="username" id="auth-username" placeholder="Enter your username here" required>
