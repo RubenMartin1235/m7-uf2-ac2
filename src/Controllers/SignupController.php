@@ -24,13 +24,21 @@ final class SignupController extends Controller {
 		$passwd = $this->request->post('passwd');
 		$passwdConfirm = $this->request->post('passwd-confirm');
 		$userRole = intval($this->request->post('user-role'));
-
+		/*
+		$data = [
+			'username'=>$username,
+			'email'=>$email,
+			'passwd'=>$passwd,
+			'userRole'=>$userRole
+		];
+		*/
+		
 		$alreadyExists = $this->auth($email, $passwd);
 
 		if (!$alreadyExists) {
 			if ($passwd == $passwdConfirm) {
 				$newUser = $this->signupAction($username, $email, $passwd, $userRole);
-				var_dump($newUser);
+				echo "NEW USER: ".var_dump($newUser)."<br>";
 			}
 			if ($newUser) {
 				$this->session->set('email',$email);
@@ -60,15 +68,22 @@ final class SignupController extends Controller {
 		$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
 		try {
 			$this->qb->clearQuery();
-			$userIdObj = ($this->qb->selectCount()->from('USERS')->exec()->fetch()[0]);
+			$userCount = $this->qb->selectCount()->from('USERS')->exec();
+			$userIdObj = ($userCount->fetch()[0]);
 			$userId = array_values(get_object_vars($userIdObj))[0] + 1;
+
 			$this->qb->clearQuery();
-			var_dump($this->qb->insert('USERS', [[$userId,$username,$email,$passH,$userRole]]));
-			$this->qb->exec();
+			$userInsert = $this->qb->query(
+				"INSERT INTO USERS VALUES " .
+				"($userId, '$username', '$email', '$passH', $userRole, 0.0)" .
+				";"
+			);
+
 			$this->qb->clearQuery();
 			return $this->getUser($email, $passwd);
+			
 		} catch (\Exception $ex) {
 			die($ex);
-		}// I give up.
+		}
 	}
 }

@@ -31,6 +31,7 @@ abstract class Controller {
 	
 	public function error() {
 		echo "Error";
+		//return view('error',['error'=>$request->session()->get('key', 'default');])
 	}
 
 	public function getUser(string|null $email, string|null $passwd) {
@@ -38,7 +39,7 @@ abstract class Controller {
 			return false;
 		}
 		$user = $this->qb->
-			select(['username','email','passwd'])->
+			select(['*'])->
 			from('USERS')->
 			where("email = '$email'")->
 			limit(1)->

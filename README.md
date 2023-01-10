@@ -11,9 +11,8 @@ La pàgina principal mostra un fons de llibres i opcions per registrar-se o inic
 Incorpora dades bàsiques de llibre:
 - ISBN
 - títol
-- autor
-- gènere
-- portada
+- autors
+- edició
 
 ## Tipus d'usuaris
 
@@ -21,6 +20,14 @@ Incorpora dades bàsiques de llibre:
 2. **Gestor**: manipula accions de lloguer, avisos i pròrrogues
 3. **Soci**: es registra, inicia sessió, consulta el catàleg i lloga llibres
 
+### Què ha de veure cada tipus d'usuari?
+|                     | Administrador | Gestor | Soci |
+|---------------------|---------------|--------|------|
+| Vista Catàleg       |       x       |    x   |   x  |
+| Editar Catàleg      |       x       |        |      |
+| Informació usuaris  |       x       |        |      |
+| Preferències usuari |       x       |        |   x  |
+| Pròrrogues          |               |    x   |      |
 
 ## Accions
 
@@ -38,3 +45,4 @@ En un principi, els usuaris poden llogar llibres gratuïtament.
 
 #### Si hi ha retard...
 Per cada dia de retard s'afegirà 0,50€ al cost del lloguer.
+

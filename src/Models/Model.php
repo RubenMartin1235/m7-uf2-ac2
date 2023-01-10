@@ -11,15 +11,27 @@ abstract class Model {
 	protected array $data;
 	protected int $id;
 
-	public function __construct(){
+	public function __construct(array $data=null){
 		$reflect = new \ReflectionClass($this);
-		$this->table = strtolower($reflect->getShortName()) . 's';
+		$this->table = strtoupper($reflect->getShortName()) . 'S';
 
-		$this->qb = Container::get('query');
+		$this->qb = Container::get('database');
 		$this->qb->setTable($this->table);
+		if ($data) {
+			$this->data = $data;
+		}
 	}
 
 	public function get():array {
 		return $this->data;
+	}
+
+	function save(){
+		$this->qb->update($this->table, $this->data);
+	}
+	function persist(){
+		if ($this->data){
+				$this->qb->insert($this->data)->exec();
+		}
 	}
 }

@@ -112,7 +112,7 @@ class DB {
 	function exec($queryArray=null):self {
 		$this->appendToQuery(";");
 		$sql = join($this->query);
-		var_dump($sql);
+		//var_dump($sql);
 
 		$this->stmt = $this->query($sql);
 		
@@ -122,9 +122,12 @@ class DB {
 
 	
 
-	function fetch(){
+	function fetch():?array{
 		$rows = $this->stmt->fetchAll(\PDO::FETCH_OBJ);
-		return $rows;
+		if ($rows) {
+			return $rows;
+		}
+		return null;
 	}
 
 	function query($sql){
