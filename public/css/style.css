@@ -11,9 +11,9 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: var(--bg-color);
-
 	display: flex;
 	flex-flow: column nowrap;
+	font-family: 'Open Sans', sans-serif;
 }
 body>main {
 	flex-grow: 1;
@@ -90,6 +90,12 @@ nav #navbar-auth {
 #auth-form .form-field input, #auth-form .form-field select {
 	min-width: 60%;
 }
+
+
+h1{
+	font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
 
 /*----- COLORS ------- */
 :root{
