@@ -7,13 +7,13 @@
 body {
 	width: 100vw;
 	min-height: 100vh;
-	background-image: url('../assets/img/book-library-with-open-textbook_1150-5920.jpg');
+	background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1856&q=80');
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: var(--bg-color);
-
 	display: flex;
 	flex-flow: column nowrap;
+	font-family: 'Open Sans', sans-serif;
 }
 body>main {
 	flex-grow: 1;
@@ -89,4 +89,19 @@ nav #navbar-auth {
 }
 #auth-form .form-field input, #auth-form .form-field select {
 	min-width: 60%;
+}
+
+
+h1{
+	font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+
+/*----- COLORS ------- */
+:root{
+    --primary1: #F26A1B;
+    --primary2: #D93D04;
+    --white:#F2F2F0 ;
+    --black:#364259;
+    --brown:#BF8B78;
 }
