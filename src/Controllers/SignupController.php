@@ -68,20 +68,20 @@ final class SignupController extends Controller {
 		$passH = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>9]);
 		try {
 			$this->qb->clearQuery();
-			$userCount = $this->qb->selectCount()->from('USERS')->exec();
-			$userIdObj = ($userCount->fetch()[0]);
-			$userId = array_values(get_object_vars($userIdObj))[0] + 1;
-
+			$userMax = $this->qb->
+				select(["MAX(id)"])->
+				from('USERS')->
+				limit(1)->
+				exec()->
+				fetch()[0]
+			;
+			$userId = array_values(get_object_vars($userMax))[0] + 1;
 			$this->qb->clearQuery();
-			$userInsert = $this->qb->query(
-				"INSERT INTO USERS VALUES " .
-				"($userId, '$username', '$email', '$passH', $userRole, 0.0)" .
-				";"
-			);
+			$this->qb->insert('USERS', [[$userId, $username, $email, $passH, $userRole, 0.0]])->qry();
 
 			$this->qb->clearQuery();
 			return $this->getUser($email, $passwd);
-			
+
 		} catch (\Exception $ex) {
 			die($ex);
 		}

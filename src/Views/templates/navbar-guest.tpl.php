@@ -1,8 +1,6 @@
 <nav>
 	<ul>
-		<li>
-			<a href="/catalog">Catalog</a>
-		</li>
+		<li></li>
 		<ul id="navbar-auth">
 			<li>
 				<a href="/auth">Login</a>

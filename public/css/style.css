@@ -40,6 +40,10 @@ header #wpname {
 	color: var(--header-wpname-color);
 	text-decoration: none;
 }
+header #headerbar-username {
+	color: var(--header-title-color);
+	text-decoration: none;
+}
 nav {
 	background-color: var(--nav-bg-color);
 	display: flex;

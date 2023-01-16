@@ -16,18 +16,22 @@ Incorpora dades bàsiques de llibre:
 
 ## Tipus d'usuaris
 
-1. **Administrador**: pot manipular catàleg i usuaris
+1. **Administrador**: pot manipular catàleg i usuaris.
 2. **Gestor**: manipula accions de lloguer, avisos i pròrrogues
 3. **Soci**: es registra, inicia sessió, consulta el catàleg i lloga llibres
 
-### Què ha de veure cada tipus d'usuari?
-|                     | Administrador | Gestor | Soci |
-|---------------------|---------------|--------|------|
-| Vista Catàleg       |       x       |    x   |   x  |
-| Editar Catàleg      |       x       |        |      |
-| Informació usuaris  |       x       |        |      |
-| Preferències usuari |       x       |        |   x  |
-| Pròrrogues          |               |    x   |      |
+### Socis
+
+1. Autenticació
+2. Registre
+3. Visualitzar catàleg
+4. Fer préstecs de llibres
+5. Visualitzar el seu perfil
+
+### Administradors
+
+1. Manipula el catàleg: afegeix i elimina llibres.
+2. 
 
 ## Accions
 

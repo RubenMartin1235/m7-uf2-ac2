@@ -19,8 +19,10 @@ abstract class Controller {
 	}
 
 	public function index() {
+		/*
 		$email = $this->request->post('email');
 		$passwd = $this->request->post('passwd');
+		*/
 
 		return view('home', compact('USERS'));
 	}

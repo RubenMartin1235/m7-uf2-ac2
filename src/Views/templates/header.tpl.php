@@ -4,6 +4,6 @@
 		<h3><?="${title}"?></h3>
 	</div>
 	<div id="header-right">
-		<h3><?=$username ?? ""?></h3>
+		<a href="/userProfile" id="headerbar-username"><h3><?=$username ?? ""?></h3></a>
 	</div>
 </header>

@@ -87,7 +87,6 @@ class DB {
 		return $result;
 	}
 	
-
 	function limit(int $n):self {
 		$this->appendToQuery(" LIMIT {$n}");
 		return $this;
@@ -119,7 +118,13 @@ class DB {
 		$this->stmt->execute();
 		return $this;
 	}
-
+	function qry():self {
+		$this->appendToQuery(";");
+		$sql = join($this->query);
+		
+		$this->stmt = $this->query($sql);
+		return $this;
+	}
 	
 
 	function fetch():?array{
